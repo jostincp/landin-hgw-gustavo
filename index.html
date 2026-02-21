@@ -44,10 +44,10 @@
                 <span>HGW Herbs</span>
             </div>
             <div class="nav-ctas">
-                <a href="https://www.healthgreenworld.com/?userName=Gustavocastrofit" target="_blank"
-                    rel="noopener noreferrer" class="btn btn-primary cta-btn">Comprar ahora</a>
+                <a href="#" data-href="https://www.healthgreenworld.com/?userName=Gustavocastrofit"
+                    class="btn btn-primary cta-btn open-video-modal">Comprar ahora</a>
                 <a href="https://wa.me/message/FGHH4Y3PH4T7O1" target="_blank" rel="noopener noreferrer"
-                    class="btn btn-accent cta-btn">¡Habla con un Experto!</a>
+                    class="btn btn-accent cta-btn"><i class="fab fa-whatsapp"></i> ¡Habla con un Experto!</a>
             </div>
         </nav>
     </header>
@@ -80,8 +80,8 @@
                         </span>
                     </div>
                     <div style="margin-top: 2rem;">
-                        <a href="https://www.healthgreenworld.com/?userName=Gustavocastrofit" target="_blank"
-                            rel="noopener noreferrer" class="btn btn-primary btn-large cta-btn">
+                        <a href="#" data-href="https://www.healthgreenworld.com/?userName=Gustavocastrofit"
+                            class="btn btn-primary btn-large cta-btn open-video-modal">
                             <i class="fas fa-shopping-cart"></i> Comprar Ahora
                         </a>
                     </div>
@@ -348,7 +348,7 @@
                     <div style="margin-top: 2rem;">
                         <a href="https://wa.me/message/FGHH4Y3PH4T7O1" target="_blank" rel="noopener noreferrer"
                             class="btn btn-accent btn-large cta-btn">
-                            ¡Quiero Asesoría de un Experto!
+                            <i class="fab fa-whatsapp"></i> ¡Quiero Asesoría de un Experto!
                         </a>
                     </div>
                 </div>
@@ -480,8 +480,8 @@
             </div>
 
             <div class="text-center" style="margin-top: 2rem;">
-                <a href="https://www.healthgreenworld.com/?userName=Gustavocastrofit" target="_blank"
-                    rel="noopener noreferrer" class="btn btn-primary btn-large cta-btn">
+                <a href="#" data-href="https://www.healthgreenworld.com/?userName=Gustavocastrofit"
+                    class="btn btn-primary btn-large cta-btn open-video-modal">
                     Quiero Empezar Ahora
                 </a>
             </div>
@@ -492,22 +492,20 @@
     <section class="cta-final" id="comprar">
         <div class="container text-center">
             <div class="fade-in">
-                <div class="discount-badge">
-                    ¡30% DE DESCUENTO!
-                </div>
+
                 <h2>Transforma tu Sonrisa Hoy</h2>
                 <p>
                     Únete a miles de personas que ya disfrutan de una salud bucal completa con HGW.<br>
                     Protección natural, resultados profesionales.
                 </p>
                 <div class="cta-buttons">
-                    <a href="https://www.healthgreenworld.com/?userName=Gustavocastrofit" target="_blank"
-                        rel="noopener noreferrer" class="btn btn-primary btn-large cta-btn">
+                    <a href="#" data-href="https://www.healthgreenworld.com/?userName=Gustavocastrofit"
+                        class="btn btn-primary btn-large cta-btn open-video-modal">
                         <i class="fas fa-shopping-cart"></i> Comprar Ahora
                     </a>
                     <a href="https://wa.me/message/FGHH4Y3PH4T7O1" target="_blank" rel="noopener noreferrer"
                         class="btn btn-accent btn-large cta-btn">
-                        <i class="fas fa-tag"></i> ¡Habla con un Experto y Ahorra!
+                        <i class="fab fa-whatsapp"></i> ¡Habla con un Experto y Ahorra!
                     </a>
                 </div>
                 <p style="font-size: 0.875rem; margin-top: 1.5rem; opacity: 0.9;">
@@ -545,6 +543,27 @@
         <a href="#comprar" class="btn btn-accent cta-btn">
             <i class="fas fa-tag"></i> Asesoría
         </a>
+    </div>
+
+    <!-- VIDEO MODAL -->
+    <div class="video-modal-overlay" id="videoModal">
+        <div class="video-modal">
+            <button class="close-modal-btn" id="closeModal" aria-label="Cerrar">&times;</button>
+            <h3><i class="fas fa-play-circle" style="color: var(--primary-green);"></i> Mira cómo comprar paso a paso
+            </h3>
+            <div class="video-wrapper vertical">
+                <iframe id="modalVideoIframe" src="" title="Tutorial de compra HGW" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <a id="modalCtaBtn" href="#" target="_blank" rel="noopener noreferrer" class="modal-cta-btn">
+                <i class="fas fa-shopping-cart"></i> Ir a la Tienda &rarr;
+            </a>
+            <p class="modal-skip-text">
+                <a href="#" id="modalSkipLink">Omitir video e ir directo</a>
+            </p>
+        </div>
     </div>
 
     <!-- JavaScript -->
