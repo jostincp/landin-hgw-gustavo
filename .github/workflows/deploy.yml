@@ -1,0 +1,28 @@
+name: Desplegar Landing Page a Oracle VPS
+
+# 1. ¿Cuándo se activa este robot?
+on:
+  push:
+    branches:
+      - main  # Se ejecuta cada vez que subes código a la rama 'main'
+
+# 2. ¿Qué trabajo va a hacer?
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # El robot usa un entorno Linux temporal
+    
+    steps:
+      # Paso A: El robot descarga tu código nuevo
+      - name: Obtener el código más reciente
+        uses: actions/checkout@v4
+
+      # Paso B: El robot se conecta a tu VPS y copia los archivos
+      - name: Copiar archivos al VPS vía SSH
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "." # Copia todo lo que está en este repositorio
+          target: "/home/ubuntu/solutionshub/landing-gustavo" # La carpeta destino en tu servidor
+          strip_components: 1 # Evita crear carpetas anidadas extrañas

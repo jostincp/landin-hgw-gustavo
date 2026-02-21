@@ -929,6 +929,12 @@ a:hover {
   background: var(--neutral-black);
 }
 
+.video-wrapper.vertical {
+  max-width: 350px; /* Width for vertical video (approx phone width) */
+  padding-bottom: 177.78%; /* 9:16 aspect ratio (16/9 * 100) */
+  margin: var(--spacing-xl) auto;
+}
+
 .video-wrapper iframe,
 .video-wrapper video {
   position: absolute;
