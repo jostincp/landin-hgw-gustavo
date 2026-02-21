@@ -27,3 +27,4 @@ jobs:
           target: "/home/ubuntu/solutionshub/landing-gustavo" # La carpeta destino en tu servidor
           strip_components: 1 # Evita crear carpetas anidadas extraña
           overwrite: true
+          exclude: ".git/,.github/"
