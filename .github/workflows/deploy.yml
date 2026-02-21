@@ -4,13 +4,13 @@ name: Desplegar Landing Page a Oracle VPS
 on:
   push:
     branches:
-      - main  # Se ejecuta cada vez que subes código a la rama 'main'
+      - main # Se ejecuta cada vez que subes código a la rama 'main'
 
 # 2. ¿Qué trabajo va a hacer?
 jobs:
   deploy:
     runs-on: ubuntu-latest # El robot usa un entorno Linux temporal
-    
+
     steps:
       # Paso A: El robot descarga tu código nuevo
       - name: Obtener el código más reciente
@@ -25,4 +25,5 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "." # Copia todo lo que está en este repositorio
           target: "/home/ubuntu/solutionshub/landing-gustavo" # La carpeta destino en tu servidor
-          strip_components: 1 # Evita crear carpetas anidadas extrañas
+          strip_components: 1 # Evita crear carpetas anidadas extraña
+          overwrite: true
