@@ -282,64 +282,19 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('%cReady for Facebook Pixel integration', 'color: #4ECDC4; font-size: 12px;');
 
     // ==========================================
-    // VIDEO MODAL - Abrir al clic en Comprar
+    // WHATSAPP REDIRECT - Comprar ahora
     // ==========================================
-    const VIDEO_URL = 'https://www.youtube.com/embed/k9zTgVzdQio';
-    const STORE_URL = 'https://www.healthgreenworld.com/?userName=Gustavocastrofit';
+    const WHATSAPP_URL = 'https://wa.me/message/FGHH4Y3PH4T7O1';
 
-    const videoModal = document.getElementById('videoModal');
-    const closeModalBtn = document.getElementById('closeModal');
-    const modalIframe = document.getElementById('modalVideoIframe');
-    const modalCtaBtn = document.getElementById('modalCtaBtn');
-    const modalSkipLink = document.getElementById('modalSkipLink');
-
-    function openModal() {
-        modalCtaBtn.href = STORE_URL;
-        modalIframe.src = VIDEO_URL + '?autoplay=1&rel=0';
-        videoModal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scroll
-    }
-
-    function closeModal() {
-        videoModal.classList.remove('active');
-        modalIframe.src = ''; // Stop video playback
-        document.body.style.overflow = '';
-    }
-
-    // Open modal when clicking any "Comprar ahora" button
+    // Configurar botones "Comprar ahora" para redirigir a WhatsApp
     document.querySelectorAll('.open-video-modal').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
-            openModal();
+            // Mostrar confirmación antes de redirigir
+            if (confirm('Serás direccionado a WhatsApp donde te guiaremos en el proceso de compra. ¿Continuar?')) {
+                window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
+            }
         });
-    });
-
-    // Close with X button
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeModal);
-    }
-
-    // Close when clicking outside the modal box
-    if (videoModal) {
-        videoModal.addEventListener('click', function (e) {
-            if (e.target === videoModal) closeModal();
-        });
-    }
-
-    // "Omitir video e ir directo" link
-    if (modalSkipLink) {
-        modalSkipLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            closeModal();
-            window.open(STORE_URL, '_blank', 'noopener,noreferrer');
-        });
-    }
-
-    // Close with Escape key
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
-            closeModal();
-        }
     });
 
 });
