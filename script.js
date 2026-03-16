@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // ==========================================
     
     // Track ViewContent when scrolling to key sections
-    const trackSections = ['beneficios', 'testimonios', 'comprar'];
+    const trackSections = ['beneficios', 'testimonios', 'comprar', 'video'];
     const trackedSections = new Set();
     
     const sectionObserver = new IntersectionObserver(function (entries) {
