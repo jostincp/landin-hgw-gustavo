@@ -178,27 +178,61 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ==========================================
-    // CTA CLICK TRACKING
-    // (Ready for Facebook Pixel integration)
+    // META PIXEL - EVENT TRACKING
     // ==========================================
+    
+    // Track ViewContent when scrolling to key sections
+    const trackSections = ['beneficios', 'testimonios', 'comprar'];
+    const trackedSections = new Set();
+    
+    const sectionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !trackedSections.has(entry.target.id)) {
+                trackedSections.add(entry.target.id);
+                
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'ViewContent', {
+                        content_name: entry.target.id,
+                        content_category: 'Landing Section'
+                    });
+                    console.log('Pixel: ViewContent -', entry.target.id);
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    trackSections.forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) sectionObserver.observe(section);
+    });
+
+    // Track CTA clicks
     const ctaButtons = document.querySelectorAll('.cta-btn');
 
     ctaButtons.forEach(button => {
         button.addEventListener('click', function () {
-            const buttonText = this.textContent.trim();
-
-            // Log click event (replace with Facebook Pixel event)
-            console.log('CTA Clicked:', buttonText);
-
-            // Example Facebook Pixel event (uncomment when ready):
-            // if (typeof fbq !== 'undefined') {
-            //     fbq('track', 'AddToCart', {
-            //         content_name: 'HGW Toothpaste',
-            //         content_category: 'Health',
-            //         value: 0.00,
-            //         currency: 'USD'
-            //     });
-            // }
+            const buttonText = this.textContent.trim().toLowerCase();
+            const isWhatsApp = this.href && this.href.includes('wa.me');
+            
+            if (typeof fbq !== 'undefined') {
+                if (isWhatsApp || buttonText.includes('comprar')) {
+                    // Track Contact event for WhatsApp clicks
+                    fbq('track', 'Contact', {
+                        content_name: 'WhatsApp Contact',
+                        content_category: 'Lead Generation'
+                    });
+                    console.log('Pixel: Contact - WhatsApp');
+                } else if (buttonText.includes('comprar')) {
+                    // Track AddToCart for purchase intent
+                    fbq('track', 'AddToCart', {
+                        content_name: 'HGW Toothpaste',
+                        content_category: 'Health',
+                        value: 0.00,
+                        currency: 'USD'
+                    });
+                    console.log('Pixel: AddToCart');
+                }
+            }
         });
     });
 
