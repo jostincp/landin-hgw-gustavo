@@ -206,32 +206,19 @@ document.addEventListener('DOMContentLoaded', function () {
         if (section) sectionObserver.observe(section);
     });
 
-    // Track CTA clicks
+    // Track CTA clicks - Todos los botones disparan el evento Contact
     const ctaButtons = document.querySelectorAll('.cta-btn');
 
     ctaButtons.forEach(button => {
         button.addEventListener('click', function () {
-            const buttonText = this.textContent.trim().toLowerCase();
-            const isWhatsApp = this.href && this.href.includes('wa.me');
-            
             if (typeof fbq !== 'undefined') {
-                if (isWhatsApp || buttonText.includes('comprar')) {
-                    // Track Contact event for WhatsApp clicks
-                    fbq('track', 'Contact', {
-                        content_name: 'WhatsApp Contact',
-                        content_category: 'Lead Generation'
-                    });
-                    console.log('Pixel: Contact - WhatsApp');
-                } else if (buttonText.includes('comprar')) {
-                    // Track AddToCart for purchase intent
-                    fbq('track', 'AddToCart', {
-                        content_name: 'HGW Toothpaste',
-                        content_category: 'Health',
-                        value: 0.00,
-                        currency: 'USD'
-                    });
-                    console.log('Pixel: AddToCart');
-                }
+                // Unificar todos los CTA en un solo evento Contact
+                fbq('track', 'Contact', {
+                    content_name: 'WhatsApp Contact',
+                    content_category: 'Lead Generation',
+                    button_id: this.id || 'cta-generic'
+                });
+                console.log('Pixel: Contact - WhatsApp (Button: ' + (this.id || 'generic') + ')');
             }
         });
     });
@@ -316,20 +303,9 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('%cReady for Facebook Pixel integration', 'color: #4ECDC4; font-size: 12px;');
 
     // ==========================================
-    // WHATSAPP REDIRECT - Comprar ahora
+    // WHATSAPP REDIRECT - Todos los CTA van a WhatsApp
     // ==========================================
     const WHATSAPP_URL = 'https://wa.me/message/FGHH4Y3PH4T7O1';
-
-    // Configurar botones "Comprar ahora" para redirigir a WhatsApp
-    document.querySelectorAll('.open-video-modal').forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            // Mostrar confirmación antes de redirigir
-            if (confirm('Serás direccionado a WhatsApp donde te guiaremos en el proceso de compra. ¿Continuar?')) {
-                window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
-            }
-        });
-    });
 
 });
 
